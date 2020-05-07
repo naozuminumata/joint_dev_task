@@ -159,17 +159,15 @@ end
 
 class UserQ17
   # 以下に回答を記載
-  def initialize(name:, age:, gender:)
-    @name = name
-    @age = age
-    @gender = gender
+  def initialize(**name)
+     @name = name
   end
 
   def info
     text = <<~TEXT
-      名前：#{@name}
-      年齢：#{@age}
-      性別：#{@gender}
+      名前：#{@name[:name]}
+      年齢：#{@name[:age]}
+      性別：#{@name[:gender]}
     TEXT
     puts text
   end
@@ -209,7 +207,7 @@ end
 
 class Item
   # 以下を修正して下さい
-  attr_accessor :name
+  attr_reader :name
   def initialize(name:)
     @name = name
   end
@@ -223,7 +221,7 @@ end
 
 class UserQ20
   # 以下に回答を記載
-  attr_accessor :name, :age
+  attr_reader :name, :age
   def initialize(name:, age:)
     @name = name
     @age = age
@@ -232,23 +230,26 @@ end
 
 class Zoo
   # 以下に回答を記載
-  attr_accessor :name, :entry_fee
+  attr_reader :name, :entry_fee
   def initialize(name:, entry_fee:)
     @name = name
     @entry_fee = entry_fee
   end
 
   def info_entry_fee(user)
-    case user.age
+
+    fee = case user.age
     when 0..5
-      puts "#{user.name}さんの入場料金は #{@entry_fee[:infant]} 円です。"
+      @entry_fee[:infant]
     when 6..12
-      puts "#{user.name}さんの入場料金は #{@entry_fee[:children]} 円です。"
+      @entry_fee[:children]
     when 13..64
-      puts "#{user.name}さんの入場料金は #{@entry_fee[:adult]} 円です。"
+      @entry_fee[:adult]
     else
-      puts "#{user.name}さんの入場料金は #{@entry_fee[:senior]} 円です。"
+      @entry_fee[:senior]
     end
+
+    puts "#{user.name}さんの入場料金は #{fee} 円です。"
   end
 
 end
