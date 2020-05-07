@@ -159,7 +159,6 @@ end
 
 class UserQ17
   # 以下に回答を記載
-  attr_accessor :name, :age, :gender
   def initialize(name:, age:, gender:)
     @name = name
     @age = age
@@ -188,7 +187,6 @@ end
 
 class UserQ18
   # 以下に回答を記載
-  attr_accessor :name, :age
   def initialize(name:, age:)
     @name = name
     @age = age
@@ -252,7 +250,7 @@ class Zoo
       puts "#{user.name}さんの入場料金は #{@entry_fee[:senior]} 円です。"
     end
   end
-  
+
 end
 
 def q20
